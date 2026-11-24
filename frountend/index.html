@@ -1,0 +1,2981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CWS Communications Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+    <div class="logo-area">
+        <div class="paw">🐾</div>
+
+        <div>
+            <h2>CWS</h2>
+            <span>Communications</span>
+        </div>
+    </div>
+
+
+    <nav class="menu">
+
+        <div class="menu-label">MAIN</div>
+
+        <button class="menu-item active"
+                onclick="showPage('dashboard', this)">
+            <span>🏠</span>
+            <span>Dashboard</span>
+        </button>
+
+
+        <button class="menu-item"
+                onclick="showPage('website', this)">
+            <span>🌐</span>
+            <span>Website</span>
+        </button>
+
+
+        <button class="menu-item"
+                onclick="showPage('social', this)">
+            <span>📱</span>
+            <span>Social Media</span>
+        </button>
+
+
+        <button class="menu-item"
+                onclick="showPage('email', this)">
+            <span>✉️</span>
+            <span>Email</span>
+        </button>
+
+
+        <button class="menu-item"
+                onclick="showPage('campaigns', this)">
+            <span>📢</span>
+            <span>Campaigns</span>
+        </button>
+
+
+        <div class="menu-label reports-label">ANALYSIS</div>
+
+
+        <button class="menu-item"
+                onclick="showPage('reports', this)">
+            <span>📊</span>
+            <span>Reports</span>
+        </button>
+
+
+        <button class="menu-item"
+                onclick="showPage('settings', this)">
+            <span>⚙️</span>
+            <span>Settings</span>
+        </button>
+
+    </nav>
+
+
+    <div class="prototype-box">
+
+        <div class="prototype-icon">
+            🧪
+        </div>
+
+        <div>
+            <strong>Prototype Mode</strong>
+            <p>Demo Data</p>
+        </div>
+
+    </div>
+
+</aside>
+
+
+
+<!-- =====================================================
+     MAIN AREA
+===================================================== -->
+
+<main class="main">
+
+
+    <!-- HEADER -->
+
+    <header class="top-header">
+
+        <div class="organization">
+
+            <strong>
+                CENTRE FOR WILDLIFE STUDIES
+            </strong>
+
+            <span>
+                Communications Dashboard
+            </span>
+
+        </div>
+
+
+        <div class="header-actions">
+
+            <button
+                id="refreshBtn"
+                class="icon-button"
+                onclick="refreshDashboard()">
+                ↻
+            </button>
+
+
+            <button
+                class="icon-button"
+                onclick="showNotification()">
+                🔔
+            </button>
+
+
+            <div class="profile">
+
+                <div class="profile-circle">
+                    C
+                </div>
+
+                <div>
+                    <strong>Communications</strong>
+                    <small>Media & Outreach</small>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =================================================
+         DASHBOARD HOME
+    ================================================= -->
+
+    <section id="dashboard"
+             class="dashboard active">
+
+
+        <div class="welcome-card">
+
+            <div>
+
+                <span class="small-label">
+                    COMMUNICATION OVERVIEW
+                </span>
+
+                <h1>
+                    Good morning, CWS Team 👋
+                </h1>
+
+                <p>
+                    Monitor website, social media, email and campaign
+                    performance from one centralized dashboard.
+                </p>
+
+            </div>
+
+
+            <div class="welcome-controls">
+
+                <select id="monthSelect"
+                        onchange="changeMonth()">
+
+                    <option value="october">
+                        October 2026
+                    </option>
+
+                    <option value="september">
+                        September 2026
+                    </option>
+
+                    <option value="august">
+                        August 2026
+                    </option>
+
+                </select>
+
+
+                <button class="primary-button"
+                        onclick="downloadReport()">
+                    ↓ Download Report
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="demo-notice">
+
+            <span>ⓘ</span>
+
+            <div>
+                <strong>Prototype Dashboard</strong>
+
+                <p>
+                    This demonstration uses sample data.
+                    In the final system, these metrics can be connected
+                    to actual CWS communication platforms and data sources.
+                </p>
+            </div>
+
+        </div>
+
+
+
+        <!-- KPI CARDS -->
+
+        <div class="kpi-grid">
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-icon blue">
+                        🌐
+                    </span>
+
+                    <span class="positive">
+                        +12.4%
+                    </span>
+
+                </div>
+
+                <p>Website Visitors</p>
+
+                <h2 id="visitorCount">
+                    24,580
+                </h2>
+
+                <small>
+                    vs previous month
+                </small>
+
+            </div>
+
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-icon purple">
+                        📱
+                    </span>
+
+                    <span class="positive">
+                        +8.7%
+                    </span>
+
+                </div>
+
+                <p>Social Reach</p>
+
+                <h2>
+                    86.4K
+                </h2>
+
+                <small>
+                    across platforms
+                </small>
+
+            </div>
+
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-icon red">
+                        ▶
+                    </span>
+
+                    <span class="positive">
+                        +15.2%
+                    </span>
+
+                </div>
+
+                <p>YouTube Views</p>
+
+                <h2>
+                    42.8K
+                </h2>
+
+                <small>
+                    monthly views
+                </small>
+
+            </div>
+
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-icon green">
+                        ✉️
+                    </span>
+
+                    <span class="positive">
+                        +4.3%
+                    </span>
+
+                </div>
+
+                <p>Email Open Rate</p>
+
+                <h2>
+                    38.6%
+                </h2>
+
+                <small>
+                    average open rate
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- WEBSITE + SOCIAL -->
+
+        <div class="two-column">
+
+
+            <div class="chart-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h3>Website Traffic</h3>
+                        <p>Monthly visitors</p>
+                    </div>
+
+                    <span class="chart-value">
+                        24.5K
+                    </span>
+
+                </div>
+
+
+                <div class="simple-chart">
+
+                    <div class="chart-labels">
+
+                        <span>30K</span>
+                        <span>20K</span>
+                        <span>10K</span>
+                        <span>0</span>
+
+                    </div>
+
+
+                    <div class="chart-bars">
+
+                        <div class="chart-bar"
+                             style="height:45%">
+                            <span>May</span>
+                        </div>
+
+                        <div class="chart-bar"
+                             style="height:55%">
+                            <span>Jun</span>
+                        </div>
+
+                        <div class="chart-bar"
+                             style="height:60%">
+                            <span>Jul</span>
+                        </div>
+
+                        <div class="chart-bar"
+                             style="height:70%">
+                            <span>Aug</span>
+                        </div>
+
+                        <div class="chart-bar"
+                             style="height:80%">
+                            <span>Sep</span>
+                        </div>
+
+                        <div class="chart-bar active-bar"
+                             style="height:92%">
+                            <span>Oct</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="chart-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h3>Social Platform Reach</h3>
+                        <p>Current month</p>
+                    </div>
+
+                </div>
+
+
+                <div class="social-mini">
+
+                    <div>
+
+                        <span>Instagram</span>
+
+                        <strong>42.5K</strong>
+
+                        <div class="mini-progress">
+                            <span style="width:92%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>LinkedIn</span>
+
+                        <strong>18.6K</strong>
+
+                        <div class="mini-progress">
+                            <span style="width:65%"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <span>YouTube</span>
+
+                        <strong>42.8K</strong>
+
+                        <div class="mini-progress">
+                            <span style="width:82%"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- PERFORMANCE -->
+
+        <div class="performance-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h3>Communication Performance</h3>
+                    <p>Data health across channels</p>
+                </div>
+
+                <span class="score">
+                    82%
+                </span>
+
+            </div>
+
+
+            <div class="performance-list">
+
+                <div class="performance-row">
+
+                    <span>Website</span>
+
+                    <div class="progress">
+                        <span style="width:82%"></span>
+                    </div>
+
+                    <strong>82%</strong>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>Instagram</span>
+
+                    <div class="progress">
+                        <span style="width:91%"></span>
+                    </div>
+
+                    <strong>91%</strong>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>LinkedIn</span>
+
+                    <div class="progress">
+                        <span style="width:64%"></span>
+                    </div>
+
+                    <strong>64%</strong>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>YouTube</span>
+
+                    <div class="progress">
+                        <span style="width:78%"></span>
+                    </div>
+
+                    <strong>78%</strong>
+
+                </div>
+
+
+                <div class="performance-row">
+
+                    <span>Email</span>
+
+                    <div class="progress">
+                        <span style="width:86%"></span>
+                    </div>
+
+                    <strong>86%</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- BOTTOM CARDS -->
+
+        <div class="bottom-grid">
+
+
+            <div class="bottom-card">
+
+                <div class="card-heading">
+
+                    <h3>Recent Campaigns</h3>
+
+                    <button onclick="showPage('campaigns')">
+                        View all →
+                    </button>
+
+                </div>
+
+
+                <div class="campaign-item">
+
+                    <div>
+                        <strong>Wild Seve</strong>
+                        <span>Conservation Campaign</span>
+                    </div>
+
+                    <strong>₹1.24L</strong>
+
+                </div>
+
+
+                <div class="campaign-item">
+
+                    <div>
+                        <strong>Shaale</strong>
+                        <span>Education Initiative</span>
+                    </div>
+
+                    <strong>₹86K</strong>
+
+                </div>
+
+
+                <div class="campaign-item">
+
+                    <div>
+                        <strong>Surakshe</strong>
+                        <span>Community Programme</span>
+                    </div>
+
+                    <strong>₹72K</strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="bottom-card">
+
+                <div class="card-heading">
+                    <h3>Data Health</h3>
+                    <span class="healthy">
+                        ● Healthy
+                    </span>
+                </div>
+
+
+                <div class="status-item">
+
+                    <span>Website Analytics</span>
+
+                    <strong class="status-good">
+                        Updated
+                    </strong>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <span>Social Media</span>
+
+                    <strong class="status-good">
+                        Updated
+                    </strong>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <span>Email Data</span>
+
+                    <strong class="status-good">
+                        Updated
+                    </strong>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <span>Campaign Data</span>
+
+                    <strong class="status-warning">
+                        Review
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="demo-note-small">
+            Prototype data only • Final implementation can connect
+            actual CWS data sources and APIs.
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         WEBSITE ANALYTICS
+    ================================================= -->
+
+    <section id="website"
+             class="page-section">
+
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="small-label">
+                    WEBSITE ANALYTICS
+                </span>
+
+                <h1>
+                    Website Performance
+                </h1>
+
+                <p>
+                    Understand how audiences discover and use the CWS website.
+                </p>
+
+            </div>
+
+            <span class="page-date">
+                October 2026
+            </span>
+
+        </div>
+
+
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+                <p>Visitors</p>
+                <h2>24,580</h2>
+                <span class="positive">+12.4%</span>
+            </div>
+
+            <div class="kpi-card">
+                <p>Sessions</p>
+                <h2>31,200</h2>
+                <span class="positive">+9.8%</span>
+            </div>
+
+            <div class="kpi-card">
+                <p>Bounce Rate</p>
+                <h2>42.8%</h2>
+                <span class="positive">↓ 3.2%</span>
+            </div>
+
+            <div class="kpi-card">
+                <p>Avg. Time</p>
+                <h2>3m 42s</h2>
+                <span class="positive">+8.1%</span>
+            </div>
+
+        </div>
+
+
+
+        <div class="website-chart-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h3>Website Traffic Trend</h3>
+                    <p>Visitors from May to October</p>
+                </div>
+
+                <strong>24.5K</strong>
+
+            </div>
+
+
+            <div class="traffic-chart">
+
+                <div class="chart-y-axis">
+
+                    <span>30K</span>
+                    <span>20K</span>
+                    <span>10K</span>
+                    <span>0</span>
+
+                </div>
+
+
+                <div class="traffic-area">
+
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+                    <div class="grid-line"></div>
+
+
+                    <div class="bars">
+
+                        <div class="bar-item">
+                            <div class="bar"
+                                 style="height:45%"></div>
+                            <span>May</span>
+                        </div>
+
+                        <div class="bar-item">
+                            <div class="bar"
+                                 style="height:52%"></div>
+                            <span>Jun</span>
+                        </div>
+
+                        <div class="bar-item">
+                            <div class="bar"
+                                 style="height:60%"></div>
+                            <span>Jul</span>
+                        </div>
+
+                        <div class="bar-item">
+                            <div class="bar"
+                                 style="height:68%"></div>
+                            <span>Aug</span>
+                        </div>
+
+                        <div class="bar-item">
+                            <div class="bar"
+                                 style="height:78%"></div>
+                            <span>Sep</span>
+                        </div>
+
+                        <div class="bar-item">
+                            <div class="bar active-bar"
+                                 style="height:92%"></div>
+                            <span>Oct</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="website-two-column">
+
+
+            <div class="website-card">
+
+                <div class="card-heading">
+                    <h3>Traffic Sources</h3>
+                </div>
+
+
+                <div class="source-row">
+
+                    <span>Google Search</span>
+                    <strong>42%</strong>
+
+                    <div class="source-progress">
+                        <span style="width:42%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="source-row">
+
+                    <span>Instagram</span>
+                    <strong>24%</strong>
+
+                    <div class="source-progress">
+                        <span style="width:24%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="source-row">
+
+                    <span>Direct</span>
+                    <strong>19%</strong>
+
+                    <div class="source-progress">
+                        <span style="width:19%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="source-row">
+
+                    <span>LinkedIn</span>
+                    <strong>15%</strong>
+
+                    <div class="source-progress">
+                        <span style="width:15%"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="website-card">
+
+                <div class="card-heading">
+                    <h3>Top Pages</h3>
+                </div>
+
+
+                <div class="top-page">
+                    <span class="rank">01</span>
+                    <span>Homepage</span>
+                    <strong>8.4K</strong>
+                </div>
+
+
+                <div class="top-page">
+                    <span class="rank">02</span>
+                    <span>Wild Seve</span>
+                    <strong>5.7K</strong>
+                </div>
+
+
+                <div class="top-page">
+                    <span class="rank">03</span>
+                    <span>Research</span>
+                    <strong>4.3K</strong>
+                </div>
+
+
+                <div class="top-page">
+                    <span class="rank">04</span>
+                    <span>Shaale</span>
+                    <strong>3.1K</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="website-insight">
+
+            <strong>💡 Key Insight</strong>
+
+            <p>
+                Organic search is currently the largest source of website
+                visitors in this prototype. Campaign and social traffic
+                provide additional opportunities to increase discovery.
+            </p>
+
+        </div>
+
+
+        <div class="demo-note-small">
+            Sample prototype data • Not connected to live CWS analytics.
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SOCIAL MEDIA
+    ================================================= -->
+
+    <section id="social"
+             class="page-section">
+
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="small-label">
+                    SOCIAL MEDIA ANALYTICS
+                </span>
+
+                <h1>
+                    Social Media Performance
+                </h1>
+
+                <p>
+                    Compare reach, engagement and audience growth across platforms.
+                </p>
+
+            </div>
+
+            <span class="page-date">
+                October 2026
+            </span>
+
+        </div>
+
+
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+                <p>Total Reach</p>
+                <h2>86.4K</h2>
+                <span class="positive">+8.7%</span>
+            </div>
+
+            <div class="kpi-card">
+                <p>Engagement Rate</p>
+                <h2>6.8%</h2>
+                <span class="positive">+1.4%</span>
+            </div>
+
+            <div class="kpi-card">
+                <p>Followers</p>
+                <h2>18.7K</h2>
+                <span class="positive">+5.9%</span>
+            </div>
+
+            <div class="kpi-card">
+                <p>Content Published</p>
+                <h2>42</h2>
+                <span class="positive">+10.5%</span>
+            </div>
+
+        </div>
+
+
+
+        <div class="social-platform-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h3>Platform Overview</h3>
+                    <p>Current month performance</p>
+                </div>
+
+            </div>
+
+
+            <div class="platform-grid">
+
+
+                <div class="platform-card">
+
+                    <div class="platform-title">
+
+                        <span class="platform-icon instagram">
+                            ◎
+                        </span>
+
+                        <strong>Instagram</strong>
+
+                    </div>
+
+                    <h2>42.5K</h2>
+
+                    <span>Reach</span>
+
+                    <div class="platform-stat">
+                        Engagement <strong>7.4%</strong>
+                    </div>
+
+                    <div class="platform-stat">
+                        Followers <strong>10.2K</strong>
+                    </div>
+
+                    <div class="platform-stat">
+                        Posts <strong>18</strong>
+                    </div>
+
+                    <div class="platform-progress">
+                        <span style="width:91%"></span>
+                    </div>
+
+                    <small>Data Health 91%</small>
+
+                </div>
+
+
+
+                <div class="platform-card">
+
+                    <div class="platform-title">
+
+                        <span class="platform-icon linkedin">
+                            in
+                        </span>
+
+                        <strong>LinkedIn</strong>
+
+                    </div>
+
+                    <h2>18.6K</h2>
+
+                    <span>Reach</span>
+
+                    <div class="platform-stat">
+                        Engagement <strong>5.1%</strong>
+                    </div>
+
+                    <div class="platform-stat">
+                        Followers <strong>4.8K</strong>
+                    </div>
+
+                    <div class="platform-stat">
+                        Posts <strong>12</strong>
+                    </div>
+
+                    <div class="platform-progress">
+                        <span style="width:64%"></span>
+                    </div>
+
+                    <small>Data Health 64%</small>
+
+                </div>
+
+
+
+                <div class="platform-card">
+
+                    <div class="platform-title">
+
+                        <span class="platform-icon youtube">
+                            ▶
+                        </span>
+
+                        <strong>YouTube</strong>
+
+                    </div>
+
+                    <h2>42.8K</h2>
+
+                    <span>Views</span>
+
+                    <div class="platform-stat">
+                        Engagement <strong>6.2%</strong>
+                    </div>
+
+                    <div class="platform-stat">
+                        Subscribers <strong>3.7K</strong>
+                    </div>
+
+                    <div class="platform-stat">
+                        Videos <strong>12</strong>
+                    </div>
+
+                    <div class="platform-progress">
+                        <span style="width:78%"></span>
+                    </div>
+
+                    <small>Data Health 78%</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="social-two-column">
+
+
+            <div class="website-card">
+
+                <div class="card-heading">
+                    <h3>Platform Comparison</h3>
+                </div>
+
+
+                <div class="comparison-row">
+
+                    <span>Instagram</span>
+
+                    <div class="comparison-bar">
+                        <span style="width:92%"></span>
+                    </div>
+
+                    <strong>92%</strong>
+
+                </div>
+
+
+                <div class="comparison-row">
+
+                    <span>YouTube</span>
+
+                    <div class="comparison-bar">
+                        <span style="width:82%"></span>
+                    </div>
+
+                    <strong>82%</strong>
+
+                </div>
+
+
+                <div class="comparison-row">
+
+                    <span>LinkedIn</span>
+
+                    <div class="comparison-bar">
+                        <span style="width:65%"></span>
+                    </div>
+
+                    <strong>65%</strong>
+
+                </div>
+
+
+                <p class="chart-note">
+                    Performance score is a prototype indicator combining
+                    selected engagement and reach metrics.
+                </p>
+
+            </div>
+
+
+
+            <div class="website-card">
+
+                <div class="card-heading">
+                    <h3>Top Content</h3>
+                </div>
+
+
+                <div class="content-item">
+
+                    <span class="content-rank">01</span>
+
+                    <div>
+                        <strong>Wild Seve Field Update</strong>
+                        <small>Instagram</small>
+                    </div>
+
+                    <strong>12.8K</strong>
+
+                </div>
+
+
+                <div class="content-item">
+
+                    <span class="content-rank">02</span>
+
+                    <div>
+                        <strong>Human-Wildlife Conflict Awareness</strong>
+                        <small>LinkedIn</small>
+                    </div>
+
+                    <strong>7.4K</strong>
+
+                </div>
+
+
+                <div class="content-item">
+
+                    <span class="content-rank">03</span>
+
+                    <div>
+                        <strong>CWS Conservation Story</strong>
+                        <small>YouTube</small>
+                    </div>
+
+                    <strong>6.2K</strong>
+
+                </div>
+
+
+                <div class="content-item">
+
+                    <span class="content-rank">04</span>
+
+                    <div>
+                        <strong>Shaale Education Initiative</strong>
+                        <small>Instagram</small>
+                    </div>
+
+                    <strong>5.8K</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="social-insight">
+
+            <strong>💡 Key Insight</strong>
+
+            <p>
+                Instagram shows the strongest prototype reach and engagement,
+                while LinkedIn supports professional and research-oriented
+                communication. YouTube provides an important storytelling channel.
+            </p>
+
+        </div>
+
+
+        <div class="demo-note-small">
+            Sample prototype data • Not connected to live social media accounts.
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         EMAIL
+    ================================================= -->
+
+    <section id="email"
+             class="page-section">
+
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="small-label">
+                    EMAIL ANALYTICS
+                </span>
+
+                <h1>
+                    Email Performance
+                </h1>
+
+                <p>
+                    Monitor newsletter reach, opens and audience engagement.
+                </p>
+
+            </div>
+
+            <span class="page-date">
+                October 2026
+            </span>
+
+        </div>
+
+
+
+        <div class="kpi-grid">
+
+            <div class="kpi-card">
+                <p>Emails Sent</p>
+                <h2>12.8K</h2>
+                <span class="positive">+7.2%</span>
+            </div>
+
+            <div class="kpi-card">
+                <p>Open Rate</p>
+                <h2>38.6%</h2>
+                <span class="positive">+4.3%</span>
+            </div>
+
+            <div class="kpi-card">
+                <p>Click Rate</p>
+                <h2>8.4%</h2>
+                <span class="positive">+2.1%</span>
+            </div>
+
+            <div class="kpi-card">
+                <p>Subscribers</p>
+                <h2>6.4K</h2>
+                <span class="positive">+3.8%</span>
+            </div>
+
+        </div>
+
+
+
+        <div class="email-chart-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h3>Monthly Open Rate</h3>
+                    <p>Email engagement from May to October</p>
+                </div>
+
+                <strong>38.6%</strong>
+
+            </div>
+
+
+            <div class="email-chart">
+
+                <div class="email-y-axis">
+
+                    <span>45%</span>
+                    <span>30%</span>
+                    <span>15%</span>
+                    <span>0</span>
+
+                </div>
+
+
+                <div class="email-chart-area">
+
+                    <div class="email-grid-line"></div>
+                    <div class="email-grid-line"></div>
+                    <div class="email-grid-line"></div>
+
+
+                    <div class="email-bars">
+
+                        <div class="email-bar-item">
+                            <div class="email-bar"
+                                 style="height:69%"></div>
+                            <span>May</span>
+                        </div>
+
+                        <div class="email-bar-item">
+                            <div class="email-bar"
+                                 style="height:75%"></div>
+                            <span>Jun</span>
+                        </div>
+
+                        <div class="email-bar-item">
+                            <div class="email-bar"
+                                 style="height:79%"></div>
+                            <span>Jul</span>
+                        </div>
+
+                        <div class="email-bar-item">
+                            <div class="email-bar"
+                                 style="height:82%"></div>
+                            <span>Aug</span>
+                        </div>
+
+                        <div class="email-bar-item">
+                            <div class="email-bar"
+                                 style="height:85%"></div>
+                            <span>Sep</span>
+                        </div>
+
+                        <div class="email-bar-item">
+                            <div class="email-bar active-bar"
+                                 style="height:90%"></div>
+                            <span>Oct</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="email-two-column">
+
+
+            <div class="email-card">
+
+                <div class="card-heading">
+                    <h3>Recent Campaigns</h3>
+                </div>
+
+
+                <div class="email-campaign">
+
+                    <div class="email-campaign-top">
+
+                        <strong>CWS Monthly Newsletter</strong>
+
+                        <span class="email-score">
+                            42.1%
+                        </span>
+
+                    </div>
+
+                    <small>
+                        4,200 recipients
+                    </small>
+
+                    <div class="email-progress">
+                        <span style="width:88%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="email-campaign">
+
+                    <div class="email-campaign-top">
+
+                        <strong>Wild Seve Update</strong>
+
+                        <span class="email-score">
+                            39.8%
+                        </span>
+
+                    </div>
+
+                    <small>
+                        3,100 recipients
+                    </small>
+
+                    <div class="email-progress">
+                        <span style="width:83%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="email-campaign">
+
+                    <div class="email-campaign-top">
+
+                        <strong>Conservation Stories</strong>
+
+                        <span class="email-score">
+                            36.4%
+                        </span>
+
+                    </div>
+
+                    <small>
+                        2,850 recipients
+                    </small>
+
+                    <div class="email-progress">
+                        <span style="width:76%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="email-campaign">
+
+                    <div class="email-campaign-top">
+
+                        <strong>Shaale Programme</strong>
+
+                        <span class="email-score">
+                            34.9%
+                        </span>
+
+                    </div>
+
+                    <small>
+                        2,650 recipients
+                    </small>
+
+                    <div class="email-progress">
+                        <span style="width:73%"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="email-card">
+
+                <div class="card-heading">
+                    <h3>Engagement Summary</h3>
+                </div>
+
+
+                <div class="engagement-stat">
+
+                    <span>Opened</span>
+
+                    <strong>4,941</strong>
+
+                    <small>38.6%</small>
+
+                </div>
+
+
+                <div class="engagement-stat">
+
+                    <span>Clicked</span>
+
+                    <strong>1,075</strong>
+
+                    <small>8.4%</small>
+
+                </div>
+
+
+                <div class="engagement-stat">
+
+                    <span>Unsubscribed</span>
+
+                    <strong>46</strong>
+
+                    <small>0.36%</small>
+
+                </div>
+
+
+                <div class="engagement-stat">
+
+                    <span>Bounced</span>
+
+                    <strong>128</strong>
+
+                    <small>1.0%</small>
+
+                </div>
+
+
+                <div class="email-health">
+
+                    <div class="health-circle">
+                        86%
+                    </div>
+
+                    <div>
+                        <strong>Email Health</strong>
+                        <p>Good performance</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="email-insight">
+
+            <strong>💡 Key Insight</strong>
+
+            <p>
+                The prototype shows a steady improvement in email open rate
+                from May to October, suggesting stronger audience engagement
+                with recent communication.
+            </p>
+
+        </div>
+
+
+        <div class="demo-note-small">
+            Sample prototype data • Final version can connect to email platform data.
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         CAMPAIGNS
+    ================================================= -->
+
+    <section id="campaigns"
+             class="page-section">
+
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="small-label">
+                    CAMPAIGN ANALYTICS
+                </span>
+
+                <h1>
+                    Campaign Performance
+                </h1>
+
+                <p>
+                    Track the reach, engagement and response of communication campaigns.
+                </p>
+
+            </div>
+
+            <span class="page-date">
+                October 2026
+            </span>
+
+        </div>
+
+
+
+        <div class="kpi-grid">
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-icon blue">
+                        📢
+                    </span>
+
+                    <span class="positive">
+                        +1
+                    </span>
+
+                </div>
+
+                <p>Active Campaigns</p>
+
+                <h2>3</h2>
+
+                <small>
+                    currently tracked
+                </small>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-icon purple">
+                        👥
+                    </span>
+
+                    <span class="positive">
+                        +11.4%
+                    </span>
+
+                </div>
+
+                <p>Total Reach</p>
+
+                <h2>68.2K</h2>
+
+                <small>
+                    campaign audience
+                </small>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-icon green">
+                        ❤️
+                    </span>
+
+                    <span class="positive">
+                        +1.8%
+                    </span>
+
+                </div>
+
+                <p>Engagement</p>
+
+                <h2>7.2%</h2>
+
+                <small>
+                    average engagement
+                </small>
+
+            </div>
+
+
+            <div class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-icon orange">
+                        ₹
+                    </span>
+
+                    <span class="positive">
+                        +14.6%
+                    </span>
+
+                </div>
+
+                <p>Response Value</p>
+
+                <h2>₹2.82L</h2>
+
+                <small>
+                    sample campaign response
+                </small>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CAMPAIGN TABLE -->
+
+        <div class="campaign-table-card">
+
+            <div class="card-heading">
+
+                <div>
+                    <h3>Active Campaigns</h3>
+                    <p>October campaign overview</p>
+                </div>
+
+                <button class="outline-button"
+                        onclick="downloadCampaignReport()">
+                    ↓ Export Campaigns
+                </button>
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Campaign</th>
+                            <th>Reach</th>
+                            <th>Engagement</th>
+                            <th>Response</th>
+                            <th>Data Health</th>
+                            <th>Status</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        <tr>
+
+                            <td>
+                                <strong>Wild Seve</strong>
+                                <small>Conservation Campaign</small>
+                            </td>
+
+                            <td>31.4K</td>
+
+                            <td>8.1%</td>
+
+                            <td>₹1.24L</td>
+
+                            <td>
+                                <div class="table-progress">
+                                    <span style="width:92%"></span>
+                                </div>
+                                92%
+                            </td>
+
+                            <td>
+                                <span class="status-badge active">
+                                    Active
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <strong>Shaale</strong>
+                                <small>Education Initiative</small>
+                            </td>
+
+                            <td>21.7K</td>
+
+                            <td>6.9%</td>
+
+                            <td>₹86K</td>
+
+                            <td>
+                                <div class="table-progress">
+                                    <span style="width:81%"></span>
+                                </div>
+                                81%
+                            </td>
+
+                            <td>
+                                <span class="status-badge active">
+                                    Active
+                                </span>
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                <strong>Surakshe</strong>
+                                <small>Community Programme</small>
+                            </td>
+
+                            <td>15.1K</td>
+
+                            <td>6.2%</td>
+
+                            <td>₹72K</td>
+
+                            <td>
+                                <div class="table-progress">
+                                    <span style="width:74%"></span>
+                                </div>
+                                74%
+                            </td>
+
+                            <td>
+                                <span class="status-badge review">
+                                    Review
+                                </span>
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="campaign-two-column">
+
+
+            <div class="website-card">
+
+                <div class="card-heading">
+
+                    <div>
+                        <h3>Campaign Comparison</h3>
+                        <p>Overall campaign performance</p>
+                    </div>
+
+                </div>
+
+
+                <div class="campaign-score-row">
+
+                    <div class="campaign-name">
+                        <span>Wild Seve</span>
+                        <strong>92%</strong>
+                    </div>
+
+                    <div class="campaign-large-progress">
+                        <span style="width:92%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="campaign-score-row">
+
+                    <div class="campaign-name">
+                        <span>Shaale</span>
+                        <strong>81%</strong>
+                    </div>
+
+                    <div class="campaign-large-progress">
+                        <span style="width:81%"></span>
+                    </div>
+
+                </div>
+
+
+                <div class="campaign-score-row">
+
+                    <div class="campaign-name">
+                        <span>Surakshe</span>
+                        <strong>74%</strong>
+                    </div>
+
+                    <div class="campaign-large-progress">
+                        <span style="width:74%"></span>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="website-card">
+
+                <div class="card-heading">
+                    <h3>Campaign Channel Mix</h3>
+                </div>
+
+
+                <div class="channel-row">
+
+                    <span>Instagram</span>
+                    <strong>34%</strong>
+
+                </div>
+
+                <div class="channel-row">
+
+                    <span>YouTube</span>
+                    <strong>20%</strong>
+
+                </div>
+
+                <div class="channel-row">
+
+                    <span>Website</span>
+                    <strong>18%</strong>
+
+                </div>
+
+                <div class="channel-row">
+
+                    <span>LinkedIn</span>
+                    <strong>16%</strong>
+
+                </div>
+
+                <div class="channel-row">
+
+                    <span>Email</span>
+                    <strong>12%</strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="campaign-insight">
+
+            <strong>💡 Campaign Insight</strong>
+
+            <p>
+                Wild Seve has the strongest overall performance in this
+                prototype, with the highest reach, engagement and response value.
+                The dashboard can help communication teams identify which
+                campaigns and channels deserve more attention.
+            </p>
+
+        </div>
+
+
+        <div class="demo-note-small">
+            Campaign figures shown above are sample prototype values for demonstration.
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         REPORTS
+    ================================================= -->
+
+    <section id="reports"
+             class="page-section">
+
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="small-label">
+                    REPORTING CENTRE
+                </span>
+
+                <h1>
+                    Communication Reports
+                </h1>
+
+                <p>
+                    Review and export a centralized summary of communication performance.
+                </p>
+
+            </div>
+
+            <span class="page-date">
+                October 2026
+            </span>
+
+        </div>
+
+
+
+        <!-- REPORT ACTIONS -->
+
+        <div class="report-actions">
+
+            <button class="primary-button"
+                    onclick="downloadReport()">
+                ↓ Download Monthly Report
+            </button>
+
+            <button class="outline-button"
+                    onclick="exportSummary()">
+                ⇩ Export Summary
+            </button>
+
+            <button class="outline-button"
+                    onclick="printReport()">
+                🖨 Print Report
+            </button>
+
+        </div>
+
+
+
+        <!-- REPORT SUMMARY -->
+
+        <div class="report-summary-card">
+
+            <div class="report-header">
+
+                <div>
+
+                    <span class="small-label">
+                        MONTHLY COMMUNICATION REPORT
+                    </span>
+
+                    <h2>
+                        CWS Communication Performance
+                    </h2>
+
+                    <p>
+                        Reporting period: October 2026
+                    </p>
+
+                </div>
+
+
+                <div class="report-score">
+
+                    <span>Overall Score</span>
+
+                    <strong>82%</strong>
+
+                    <small>
+                        Good
+                    </small>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="report-summary-text">
+
+                <p>
+                    This centralized report provides a high-level view of
+                    website, social media, email and campaign communication
+                    performance.
+                </p>
+
+                <p>
+                    The current dashboard is a frontend prototype using
+                    sample data. A production version can automatically
+                    collect data from the relevant communication systems.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REPORT KPI -->
+
+        <div class="report-kpi-grid">
+
+
+            <div class="report-kpi">
+
+                <span>🌐</span>
+
+                <div>
+
+                    <small>Website</small>
+
+                    <strong>24.6K</strong>
+
+                    <p>Visitors</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="report-kpi">
+
+                <span>📱</span>
+
+                <div>
+
+                    <small>Social</small>
+
+                    <strong>86.4K</strong>
+
+                    <p>Total Reach</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="report-kpi">
+
+                <span>✉️</span>
+
+                <div>
+
+                    <small>Email</small>
+
+                    <strong>38.6%</strong>
+
+                    <p>Open Rate</p>
+
+                </div>
+
+            </div>
+
+
+            <div class="report-kpi">
+
+                <span>📢</span>
+
+                <div>
+
+                    <small>Campaigns</small>
+
+                    <strong>3</strong>
+
+                    <p>Active</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REPORT DETAILS -->
+
+        <div class="report-two-column">
+
+
+            <div class="report-detail-card">
+
+                <div class="card-heading">
+
+                    <h3>Performance Summary</h3>
+
+                </div>
+
+
+                <div class="report-detail-row">
+
+                    <span>Website Visitors</span>
+
+                    <strong>24,580</strong>
+
+                    <em class="up">+12.4%</em>
+
+                </div>
+
+
+                <div class="report-detail-row">
+
+                    <span>Social Reach</span>
+
+                    <strong>86.4K</strong>
+
+                    <em class="up">+8.7%</em>
+
+                </div>
+
+
+                <div class="report-detail-row">
+
+                    <span>YouTube Views</span>
+
+                    <strong>42.8K</strong>
+
+                    <em class="up">+15.2%</em>
+
+                </div>
+
+
+                <div class="report-detail-row">
+
+                    <span>Email Open Rate</span>
+
+                    <strong>38.6%</strong>
+
+                    <em class="up">+4.3%</em>
+
+                </div>
+
+
+                <div class="report-detail-row">
+
+                    <span>Campaign Engagement</span>
+
+                    <strong>7.2%</strong>
+
+                    <em class="up">+1.8%</em>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="report-detail-card">
+
+                <div class="card-heading">
+
+                    <h3>Data Health</h3>
+
+                </div>
+
+
+                <div class="report-health-row">
+
+                    <span>Website Analytics</span>
+
+                    <strong class="status-good">
+                        ● Updated
+                    </strong>
+
+                </div>
+
+
+                <div class="report-health-row">
+
+                    <span>Instagram</span>
+
+                    <strong class="status-good">
+                        ● Updated
+                    </strong>
+
+                </div>
+
+
+                <div class="report-health-row">
+
+                    <span>LinkedIn</span>
+
+                    <strong class="status-good">
+                        ● Updated
+                    </strong>
+
+                </div>
+
+
+                <div class="report-health-row">
+
+                    <span>YouTube</span>
+
+                    <strong class="status-warning">
+                        ● Review
+                    </strong>
+
+                </div>
+
+
+                <div class="report-health-row">
+
+                    <span>Email</span>
+
+                    <strong class="status-good">
+                        ● Updated
+                    </strong>
+
+                </div>
+
+
+                <div class="report-health-row">
+
+                    <span>Campaign Data</span>
+
+                    <strong class="status-warning">
+                        ● Review
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- WHAT REPORT ANSWERS -->
+
+        <div class="what-report-card">
+
+            <div>
+
+                <span class="small-label">
+                    REPORT PURPOSE
+                </span>
+
+                <h3>
+                    What does this report help answer?
+                </h3>
+
+            </div>
+
+
+            <div class="report-question-grid">
+
+                <div>
+                    <span>01</span>
+                    <p>
+                        Which communication channels are performing well?
+                    </p>
+                </div>
+
+
+                <div>
+                    <span>02</span>
+                    <p>
+                        How is audience reach changing over time?
+                    </p>
+                </div>
+
+
+                <div>
+                    <span>03</span>
+                    <p>
+                        Which campaigns are getting stronger engagement?
+                    </p>
+                </div>
+
+
+                <div>
+                    <span>04</span>
+                    <p>
+                        Which data sources need attention?
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="demo-note-small">
+            Report generated from prototype/sample data.
+            Production reporting can be automated using actual CWS data sources.
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         SETTINGS
+    ================================================= -->
+
+    <section id="settings"
+             class="page-section">
+
+
+        <div class="page-heading">
+
+            <div>
+
+                <span class="small-label">
+                    SETTINGS
+                </span>
+
+                <h1>
+                    Dashboard Settings
+                </h1>
+
+                <p>
+                    Manage dashboard preferences, notifications and data sources.
+                </p>
+
+            </div>
+
+            <span class="page-date">
+                Prototype Mode
+            </span>
+
+        </div>
+
+
+
+        <!-- PROTOTYPE SETTINGS -->
+
+        <div class="settings-card">
+
+            <div class="settings-heading">
+
+                <div>
+
+                    <h3>Dashboard Mode</h3>
+
+                    <p>
+                        Choose how this prototype displays information.
+                    </p>
+
+                </div>
+
+                <span class="settings-status">
+                    PROTOTYPE
+                </span>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>Demo Data Mode</strong>
+
+                    <p>
+                        Display sample data for presentation and testing.
+                    </p>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input type="checkbox"
+                           id="demoMode"
+                           checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>Automatic Refresh</strong>
+
+                    <p>
+                        Refresh dashboard data when the page is opened.
+                    </p>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input type="checkbox"
+                           id="autoRefresh"
+                           checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DATA SETTINGS -->
+
+        <div class="settings-card">
+
+            <div class="settings-heading">
+
+                <div>
+
+                    <h3>Data Preferences</h3>
+
+                    <p>
+                        Configure how communication data is presented.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="setting-input-row">
+
+                <label>
+                    Default Reporting Period
+                </label>
+
+
+                <select id="reportPeriod">
+
+                    <option>Monthly</option>
+                    <option>Weekly</option>
+                    <option>Quarterly</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting-input-row">
+
+                <label>
+                    Data Refresh Frequency
+                </label>
+
+
+                <select id="refreshFrequency">
+
+                    <option>Daily</option>
+                    <option>Weekly</option>
+                    <option>Monthly</option>
+                    <option>Manual</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="setting-input-row">
+
+                <label>
+                    Dashboard Display
+                </label>
+
+
+                <select id="displayMode">
+
+                    <option>Comfortable</option>
+                    <option>Compact</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NOTIFICATIONS -->
+
+        <div class="settings-card">
+
+            <div class="settings-heading">
+
+                <div>
+
+                    <h3>Notifications</h3>
+
+                    <p>
+                        Select the alerts the communications team should receive.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>Report Ready</strong>
+
+                    <p>
+                        Notify when a monthly report is ready.
+                    </p>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input type="checkbox"
+                           id="reportNotification"
+                           checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>Data Health Alerts</strong>
+
+                    <p>
+                        Notify when a connected source needs attention.
+                    </p>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input type="checkbox"
+                           id="healthNotification"
+                           checked>
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+
+            <div class="setting-row">
+
+                <div>
+
+                    <strong>Campaign Updates</strong>
+
+                    <p>
+                        Notify when campaign performance changes.
+                    </p>
+
+                </div>
+
+
+                <label class="toggle">
+
+                    <input type="checkbox"
+                           id="campaignNotification">
+
+                    <span class="slider"></span>
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- DATA SOURCES -->
+
+        <div class="settings-card">
+
+            <div class="settings-heading">
+
+                <div>
+
+                    <h3>Communication Data Sources</h3>
+
+                    <p>
+                        Overview of the systems that can feed the dashboard.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="data-source-row">
+
+                <div class="source-info">
+
+                    <span class="source-icon">
+                        🌐
+                    </span>
+
+                    <div>
+                        <strong>Website Analytics</strong>
+                        <small>Website traffic and visitor data</small>
+                    </div>
+
+                </div>
+
+                <span class="source-status connected">
+                    ● Prototype Connected
+                </span>
+
+            </div>
+
+
+            <div class="data-source-row">
+
+                <div class="source-info">
+
+                    <span class="source-icon">
+                        📸
+                    </span>
+
+                    <div>
+                        <strong>Instagram</strong>
+                        <small>Reach and engagement metrics</small>
+                    </div>
+
+                </div>
+
+                <span class="source-status connected">
+                    ● Prototype Connected
+                </span>
+
+            </div>
+
+
+            <div class="data-source-row">
+
+                <div class="source-info">
+
+                    <span class="source-icon">
+                        in
+                    </span>
+
+                    <div>
+                        <strong>LinkedIn</strong>
+                        <small>Professional audience metrics</small>
+                    </div>
+
+                </div>
+
+                <span class="source-status connected">
+                    ● Prototype Connected
+                </span>
+
+            </div>
+
+
+            <div class="data-source-row">
+
+                <div class="source-info">
+
+                    <span class="source-icon">
+                        ▶
+                    </span>
+
+                    <div>
+                        <strong>YouTube</strong>
+                        <small>Views and subscriber metrics</small>
+                    </div>
+
+                </div>
+
+                <span class="source-status review">
+                    ● Needs Update
+                </span>
+
+            </div>
+
+
+            <div class="data-source-row">
+
+                <div class="source-info">
+
+                    <span class="source-icon">
+                        ✉️
+                    </span>
+
+                    <div>
+                        <strong>Email Platform</strong>
+                        <small>Newsletter and email engagement</small>
+                    </div>
+
+                </div>
+
+                <span class="source-status connected">
+                    ● Prototype Connected
+                </span>
+
+            </div>
+
+
+            <div class="data-source-row">
+
+                <div class="source-info">
+
+                    <span class="source-icon">
+                        ₹
+                    </span>
+
+                    <div>
+                        <strong>Campaign / Donation Data</strong>
+                        <small>Campaign response and contribution data</small>
+                    </div>
+
+                </div>
+
+                <span class="source-status review">
+                    ● Needs Update
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- SETTINGS ACTIONS -->
+
+        <div class="settings-actions">
+
+            <button class="primary-button"
+                    onclick="saveSettings()">
+                ✓ Save Changes
+            </button>
+
+
+            <button class="outline-button"
+                    onclick="resetSettings()">
+                ↺ Reset Settings
+            </button>
+
+        </div>
+
+
+
+        <div class="about-dashboard">
+
+            <div class="about-icon">
+                🐾
+            </div>
+
+            <div>
+
+                <h3>
+                    About this Dashboard
+                </h3>
+
+                <p>
+                    This is a frontend prototype created to demonstrate how
+                    CWS communication data from multiple platforms could be
+                    brought together into one centralized analytics dashboard.
+                </p>
+
+                <p>
+                    Future implementation can connect the dashboard to actual
+                    APIs, scheduled exports and data pipelines.
+                </p>
+
+                <span>
+                    CWS Communications Dashboard • Prototype v1.0
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="demo-note-small">
+            Settings shown here are prototype controls and are not connected
+            to live CWS systems.
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
